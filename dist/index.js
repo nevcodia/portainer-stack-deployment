@@ -5795,7 +5795,12 @@ const getStackParams = () => {
     let file = external_fs_.readFileSync(filePath, 'utf-8');
     if (filePath.split('.').pop() === 'mustache') {
         mustache_mustache.escape = JSON.stringify;
-        file = mustache_mustache.render(file, JSON.parse(core.getInput('variables', { required: false })));
+        const mustacheVariables = core.getInput('mustache_variables', { required: false });
+        if (mustacheVariables == null) {
+            core.setFailed("mustache_variables is not defined!");
+        }
+        else
+            file = mustache_mustache.render(file, JSON.parse(mustacheVariables));
     }
     return {
         name: core.getInput('stack_name', { required: true }),

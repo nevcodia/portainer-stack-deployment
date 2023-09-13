@@ -4,6 +4,7 @@
   "description": "Portainer Stack Deployment Github Action, which deploys stacks by using Portainer API",
   "main": "dist/index.js",
   "scripts": {
+    "prebuild": "rimraf dist",
     "build": "ncc build src/index.ts --source-map --license licenses.txt"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "@types/mustache": "^4.2.2",
     "@types/node": "^16.10.1",
     "@vercel/ncc": "^0.38.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "rimraf": "^5.0.1"
   }
 }

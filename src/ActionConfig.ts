@@ -13,12 +13,14 @@ const getPortainerCredentials = (): PortainerCredentials => {
 }
 
 const getStackParams = (): StackParams => {
+    core.info("Getting stack parameters...");
     const filePath = core.getInput('stack_file_path', {required: true});
     let file = fs.readFileSync(filePath, 'utf-8');
 
     if (filePath.split('.').pop() === 'mustache') {
+        core.info("Mustache file is rendering...");
         mustache.escape = JSON.stringify;
-        const mustacheVariables = core.getInput('mustache_variables', {required: false});
+        let mustacheVariables = core.getInput('mustache_variables', {required: false});
         if (mustacheVariables == null) {
             core.setFailed("mustache_variables is not defined!")
         } else
