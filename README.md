@@ -17,13 +17,13 @@ jobs:
     - name: Deploy Stack to Portainer
       uses: nevzatcirak/portainer-stack-deployment@v2.19.0
       with:
-        url: "https://portainer.example.com"
-        username: "admin"
-        password: "password"
-        environment_id: 1
-        stack_name: stack-name
-        stack_file_path: path/to/stackfile.yml.mustache # Use .mustache or .yml
-        mustache_variables: '{"image": "hello-world"}'
+        url: ${{ secrets.PORTAINER_URL }} # https://portainer.example.co
+        username: ${{ secrets.PORTAINER_USERNAME }} # "admin"
+        password: ${{ secrets.PORTAINER_PASSWORD }} # "password"
+        environment_id: 6
+        stack_name: portainer-stack-deployment-test
+        stack_file_path: teststack.yml.mustache
+        mustache_variables: '{"image":"hello-world"}'
 ```
 
 ## Inputs
