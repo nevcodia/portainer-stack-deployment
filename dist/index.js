@@ -5791,11 +5791,13 @@ const getPortainerCredentials = () => {
     };
 };
 const getStackParams = () => {
+    core.info("Getting stack parameters...");
     const filePath = core.getInput('stack_file_path', { required: true });
     let file = external_fs_.readFileSync(filePath, 'utf-8');
     if (filePath.split('.').pop() === 'mustache') {
+        core.info("Mustache file is rendering...");
         mustache_mustache.escape = JSON.stringify;
-        const mustacheVariables = core.getInput('mustache_variables', { required: false });
+        let mustacheVariables = core.getInput('mustache_variables', { required: false });
         if (mustacheVariables == null) {
             core.setFailed("mustache_variables is not defined!");
         }
@@ -10420,7 +10422,7 @@ class PortainerService {
         const { data } = await this.client.get('/stacks', {
             params: {
                 filters: JSON.stringify({
-                    SwarmId: swarmId
+                    SwarmID: swarmId
                 })
             }
         });
@@ -10436,10 +10438,11 @@ class PortainerService {
      */
     async createStack(payload) {
         const swarmId = await this.getSwarmId(payload.environmentId);
-        const { data } = await this.client.post('/stacks/create/swarm/file', {
-            Name: payload.name,
-            file: payload.file,
-            SwarmID: swarmId
+        const { data } = await this.client.post('/stacks/create/swarm/string', {
+            fromAppTemplate: false,
+            name: payload.name,
+            stackFileContent: payload.file,
+            swarmID: swarmId
         }, {
             params: {
                 endpointId: payload.environmentId
@@ -10499,8 +10502,13 @@ const authenticate = async (portainer, cfg) => {
 const retrieveCurrentStack = async (portainer, cfg) => {
     core.startGroup('Retrieving Current Stack');
     const stacks = await portainer.getStacks(cfg.portainer.environment_id);
+    const stack = stacks.find(item => item.name === cfg.stack.name);
+    if (stack == undefined)
+        core.info("Stack(" + cfg.stack.name + ") could not be found.");
+    else
+        core.info("Stack(" + cfg.stack.name + ") is found.");
     core.endGroup();
-    return stacks.find(item => item.name === cfg.stack.name);
+    return stack;
 };
 const deleteCurrentStack = async (portainer, cfg, stack) => {
     core.startGroup('Stack Delete');
