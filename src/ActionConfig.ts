@@ -18,7 +18,11 @@ const getStackParams = (): StackParams => {
 
     if (filePath.split('.').pop() === 'mustache') {
         mustache.escape = JSON.stringify;
-        file = mustache.render(file, JSON.parse(core.getInput('variables', {required: false})));
+        const mustacheVariables = core.getInput('mustache_variables', {required: false});
+        if (mustacheVariables == null) {
+            core.setFailed("mustache_variables is not defined!")
+        } else
+            file = mustache.render(file, JSON.parse(mustacheVariables));
     }
 
     return {
