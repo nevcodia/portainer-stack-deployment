@@ -1,4 +1,4 @@
-name: Portainer Stack Deployment
+name: Portainer(v2) Stack Deployment
 description: Portainer Stack Deployment Github Action, which deploys stacks by using Portainer API.
 inputs:
   url:
