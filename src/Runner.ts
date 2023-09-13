@@ -14,8 +14,13 @@ const authenticate = async (portainer: PortainerService, cfg: Config) => {
 const retrieveCurrentStack = async (portainer: PortainerService, cfg: Config): Promise<Stack | undefined> => {
     core.startGroup('Retrieving Current Stack');
     const stacks = await portainer.getStacks(cfg.portainer.environment_id);
+    const stack = stacks.find(item => item.name === cfg.stack.name);
+    if(stack == undefined)
+        core.info("Stack(" + cfg.stack.name + ") could not be found.")
+    else
+        core.info("Stack(" + cfg.stack.name + ") is found.")
     core.endGroup();
-    return stacks.find(item => item.name === cfg.stack.name);
+    return stack;
 }
 
 const deleteCurrentStack = async (portainer: PortainerService, cfg: Config, stack: Stack) => {

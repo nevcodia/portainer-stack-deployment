@@ -65,7 +65,7 @@ export class PortainerService {
             {
                 params: {
                     filters: JSON.stringify({
-                        SwarmId: swarmId
+                        SwarmID: swarmId
                     })
                 }
             });
@@ -84,11 +84,12 @@ export class PortainerService {
     async createStack(payload: CreateStackPayload): Promise<Stack> {
         const swarmId = await this.getSwarmId(payload.environmentId);
         const {data}: { data: PortainerStack } = await this.client.post(
-            '/stacks/create/swarm/file',
+            '/stacks/create/swarm/string',
             {
-                Name: payload.name,
-                file: payload.file,
-                SwarmID: swarmId
+                fromAppTemplate: false,
+                name: payload.name,
+                stackFileContent: payload.file,
+                swarmID: swarmId
             },
             {
                 params: {
