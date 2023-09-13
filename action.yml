@@ -1,0 +1,43 @@
+name: Portainer Stack Deployment
+description: Portainer Stack Deployment Github Action, which deploys stacks by using Portainer API.
+inputs:
+  url:
+    description: URL of the Portainer API.
+    required: true
+  username:
+    description: Portainer Admin Username.
+    required: true
+  password:
+    description: Portainer Admin Password.
+    required: true
+  environment_id:
+    description: Portainer Environment ID.
+    required: true
+  stack_name:
+    description: Name of the stack to be deployed or updated.
+    required: true
+  stack_file_path:
+    description: Location of the stack file (Relative from the root directory).
+    required: true
+  mustache_variables:
+    description: Variables to render the stack file (JSON Format).
+    required: false
+    default: "{}"
+  delete:
+    description: Option to delete a stack.
+    required: false
+    default: "false"
+  prune:
+    description: Remove missing/obsolete services from stack on update.
+    required: false
+    default: "false"
+  pullImage:
+    description: Remove existing image and pull again on update.
+    required: false
+    default: "false"
+runs:
+  using: node12
+  main: dist/index.js
+branding:
+  icon: upload-cloud
+  color: purple

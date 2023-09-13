@@ -1,0 +1,31 @@
+name: "Github Action Test"
+on: [push]
+
+jobs:
+  integration-test:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Test Stack creation
+        uses: ./
+        with:
+          portainer-url: ${{ secrets.PORTAINER_URL }}
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          portainer-endpoint: 6
+          name: portainer-stack-deployment-test
+          file: teststack.yml.mustache
+          variables: '{"image":"hello-world"}'
+      - name: Test Stack deletion
+        uses: ./
+        with:
+          portainer-url: ${{ secrets.PORTAINER_URL }}
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          portainer-endpoint: 2
+          name: portainer-stack-deployment-test
+          file: teststack.yml.mustache
+          variables: '{"image":"hello-world"}'
+          delete: true

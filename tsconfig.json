@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "incremental": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
+    // stricter type-checking for stronger correctness. Recommended by TS
+    "strict": true,
+    // interop between ESM and CJS modules. Recommended by TS
+    "esModuleInterop": true,
+    // significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+    "skipLibCheck": true,
+    // error out if import and file system have a casing mismatch. Recommended by TS
+    "forceConsistentCasingInFileNames": true,
+    // prevent the use of features that are incompatible with isolated transpilation
+    "isolatedModules": true,
+    "allowJs": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
