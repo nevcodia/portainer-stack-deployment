@@ -3,29 +3,29 @@ on: [push]
 
 jobs:
   integration-test:
-    name: Integration Test
+    name: Action Integration Test
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
-      - name: Test Stack creation
+      - name: Test Stack Creation
         uses: ./
         with:
-          portainer-url: ${{ secrets.PORTAINER_URL }}
-          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
-          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
-          portainer-endpoint: 6
-          name: portainer-stack-deployment-test
-          file: teststack.yml.mustache
-          variables: '{"image":"hello-world"}'
-      - name: Test Stack deletion
+          url: ${{ secrets.PORTAINER_URL }}
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
+          environment_id: 6
+          stack_name: portainer-stack-deployment-test
+          stack_file_path: teststack.yml.mustache
+          mustache_variables: '{"image":"hello-world"}'
+      - name: Test Stack Deletion
         uses: ./
         with:
-          portainer-url: ${{ secrets.PORTAINER_URL }}
-          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
-          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
-          portainer-endpoint: 6
-          name: portainer-stack-deployment-test
-          file: teststack.yml.mustache
-          variables: '{"image":"hello-world"}'
+          url: ${{ secrets.PORTAINER_URL }}
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
+          environment_id: 6
+          stack_name: portainer-stack-deployment-test
+          stack_file_path: teststack.yml.mustache
+          mustache_variables: '{"image":"hello-world"}'
           delete: true
