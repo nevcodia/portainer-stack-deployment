@@ -10524,7 +10524,7 @@ const deleteCurrentStack = async (portainer, cfg, stack) => {
 };
 const updateCurrentStack = async (portainer, cfg, stack) => {
     core.startGroup('Stack Update');
-    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune})...`);
+    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}); pullImage: ${cfg.stack.pullImage})...`);
     await portainer.updateStack({
         id: stack.id,
         environmentId: cfg.portainer.environment_id,
@@ -10553,7 +10553,7 @@ async function exec() {
         core.debug(`Stack Content: ${cfg.stack.file}`);
         await authenticate(portainer, cfg);
         const stack = await retrieveCurrentStack(portainer, cfg);
-        if (stack) {
+        if (!!stack) {
             if (cfg.stack.delete) {
                 await deleteCurrentStack(portainer, cfg, stack);
             }
