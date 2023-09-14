@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import * as core from '@actions/core';
 import {CreateStackPayload, DeleteStackPayload, PortainerStack, Stack, UpdateStackPayload} from "./types";
 
 export class PortainerService {
@@ -60,13 +61,14 @@ export class PortainerService {
      */
     async getStacks(environmentId: number): Promise<Stack[]> {
         const swarmId = await this.getSwarmId(environmentId);
+        core.info("SwarmID=" + swarmId)
         const {data}: { data: PortainerStack[] } = await this.client.get(
             '/stacks',
             {
                 params: {
-                    filters: {
+                    filters: JSON.stringify({
                         SwarmID: swarmId
-                    }
+                    })
                 }
             });
 

@@ -10368,6 +10368,7 @@ axios.default = axios;
 
 ;// CONCATENATED MODULE: ./src/PortainerService.ts
 
+
 class PortainerService {
     constructor(url) {
         this.accessToken = null;
@@ -10419,11 +10420,12 @@ class PortainerService {
      */
     async getStacks(environmentId) {
         const swarmId = await this.getSwarmId(environmentId);
+        core.info("SwarmID=" + swarmId);
         const { data } = await this.client.get('/stacks', {
             params: {
-                filters: {
+                filters: JSON.stringify({
                     SwarmID: swarmId
-                }
+                })
             }
         });
         return data.map((item) => ({
