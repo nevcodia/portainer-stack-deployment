@@ -23,7 +23,7 @@ export class PortainerService {
          */
         this.client.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
             core.info(config?.url ? config.url : "No URL");
-            core.info(config?.params);
+            core.info(config?.params.toString());
             if (this.accessToken) {
                 config.headers['Authorization'] = `Bearer ${this.accessToken}`;
             }
@@ -67,9 +67,9 @@ export class PortainerService {
             '/stacks',
             {
                 params: {
-                    filters: encodeURIComponent(JSON.stringify({
+                    filters: {
                         SwarmID: swarmId
-                    }))
+                    }
                 }
             });
 

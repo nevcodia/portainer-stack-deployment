@@ -10386,7 +10386,7 @@ class PortainerService {
          */
         this.client.interceptors.request.use((config) => {
             core.info((config === null || config === void 0 ? void 0 : config.url) ? config.url : "No URL");
-            core.info(config === null || config === void 0 ? void 0 : config.params);
+            core.info(config === null || config === void 0 ? void 0 : config.params.toString());
             if (this.accessToken) {
                 config.headers['Authorization'] = `Bearer ${this.accessToken}`;
             }
@@ -10424,9 +10424,9 @@ class PortainerService {
         const swarmId = await this.getSwarmId(environmentId);
         const { data } = await this.client.get('/stacks', {
             params: {
-                filters: encodeURIComponent(JSON.stringify({
+                filters: {
                     SwarmID: swarmId
-                }))
+                }
             }
         });
         return data.map((item) => ({
