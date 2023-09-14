@@ -18,6 +18,7 @@ jobs:
           stack_name: portainer-stack-deployment-test
           stack_file_path: teststack.yml.mustache
           mustache_variables: '{"image":"hello-world"}'
+          pullImage: true
       - name: Test Stack Deletion
         uses: ./
         with:
@@ -29,4 +30,3 @@ jobs:
           stack_file_path: teststack.yml.mustache
           mustache_variables: '{"image":"hello-world"}'
           delete: true
-          pullImage: true
