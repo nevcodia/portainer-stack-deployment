@@ -1,5 +1,5 @@
 name: Portainer(v2) Stack Deployment
-description: Portainer Stack Deployment Github Action, which deploys stacks by using Portainer API.
+description: Portainer Stack Deployment Github Action, which deploys Docker Swarm Stacks by using Portainer API.
 inputs:
   url:
     description: URL of the Portainer API.
@@ -40,4 +40,4 @@ runs:
   main: dist/index.js
 branding:
   icon: upload-cloud
-  color: purple
+  color: green
