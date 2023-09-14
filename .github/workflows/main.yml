@@ -19,6 +19,7 @@ jobs:
           stack_file_path: teststack.yml.mustache
           mustache_variables: '{"image":"hello-world"}'
           pullImage: true
+          prune: true
       - name: Test Stack Deletion
         uses: ./
         with:

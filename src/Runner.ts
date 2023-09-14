@@ -36,7 +36,7 @@ const deleteCurrentStack = async (portainer: PortainerService, cfg: Config, stac
 
 const updateCurrentStack = async (portainer: PortainerService, cfg: Config, stack: Stack) => {
     core.startGroup('Stack Update');
-    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}); pullImage: ${cfg.stack.pullImage})...`);
+    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}; pullImage: ${cfg.stack.pullImage};)...`);
     await portainer.updateStack({
         id: stack.id,
         environmentId: cfg.portainer.environment_id,
