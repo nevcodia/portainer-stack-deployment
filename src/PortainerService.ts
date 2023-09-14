@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
+import * as core from '@actions/core';
 import {CreateStackPayload, DeleteStackPayload, PortainerStack, Stack, UpdateStackPayload} from "./types";
 
 export class PortainerService {
@@ -21,6 +22,8 @@ export class PortainerService {
          * Create Axios Interceptor for Authorization header if token is set.
          */
         this.client.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+            core.info(config?.url ? config.url : "No URL");
+            core.info(config?.params);
             if (this.accessToken) {
                 config.headers['Authorization'] = `Bearer ${this.accessToken}`;
             }

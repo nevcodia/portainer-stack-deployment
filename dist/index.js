@@ -10368,6 +10368,7 @@ axios.default = axios;
 
 ;// CONCATENATED MODULE: ./src/PortainerService.ts
 
+
 class PortainerService {
     constructor(url) {
         this.accessToken = null;
@@ -10384,6 +10385,8 @@ class PortainerService {
          * Create Axios Interceptor for Authorization header if token is set.
          */
         this.client.interceptors.request.use((config) => {
+            core.info((config === null || config === void 0 ? void 0 : config.url) ? config.url : "No URL");
+            core.info(config === null || config === void 0 ? void 0 : config.params);
             if (this.accessToken) {
                 config.headers['Authorization'] = `Bearer ${this.accessToken}`;
             }
