@@ -10421,9 +10421,9 @@ class PortainerService {
         const swarmId = await this.getSwarmId(environmentId);
         const { data } = await this.client.get('/stacks', {
             params: {
-                filters: JSON.stringify({
+                filters: encodeURIComponent(JSON.stringify({
                     SwarmID: swarmId
-                })
+                }))
             }
         });
         return data.map((item) => ({

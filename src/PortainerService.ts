@@ -64,9 +64,9 @@ export class PortainerService {
             '/stacks',
             {
                 params: {
-                    filters: JSON.stringify({
+                    filters: encodeURIComponent(JSON.stringify({
                         SwarmID: swarmId
-                    })
+                    }))
                 }
             });
 
