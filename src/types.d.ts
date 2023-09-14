@@ -18,7 +18,7 @@ export interface StackParams {
     file: string
     delete: boolean
     prune: boolean,
-    pullImage: boolean
+    pull_image: boolean
 }
 
 export interface Stack {
@@ -37,7 +37,7 @@ export interface UpdateStackPayload {
     environmentId: number
     file: string
     prune: boolean,
-    pullImage: boolean
+    pull_image: boolean
 }
 
 export interface DeleteStackPayload {

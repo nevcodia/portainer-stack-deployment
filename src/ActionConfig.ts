@@ -32,7 +32,7 @@ const getStackParams = (): StackParams => {
         file,
         delete: core.getInput('delete', {required: false}) === "true",
         prune: core.getInput('prune', {required: false}) === "true",
-        pullImage: core.getInput('pullImage', {required: false}) === "true"
+        pull_image: core.getInput('pull_image', {required: false}) === "true"
     };
 }
 

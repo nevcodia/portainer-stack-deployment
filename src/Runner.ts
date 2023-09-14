@@ -36,13 +36,13 @@ const deleteCurrentStack = async (portainer: PortainerService, cfg: Config, stac
 
 const updateCurrentStack = async (portainer: PortainerService, cfg: Config, stack: Stack) => {
     core.startGroup('Stack Update');
-    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}; pullImage: ${cfg.stack.pullImage};)...`);
+    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}; pull_image: ${cfg.stack.pull_image};)...`);
     await portainer.updateStack({
         id: stack.id,
         environmentId: cfg.portainer.environment_id,
         file: cfg.stack.file,
         prune: cfg.stack.prune,
-        pullImage: cfg.stack.pullImage
+        pull_image: cfg.stack.pull_image
     })
     core.info(`Stack(${stack.id}) is updated.`);
     core.endGroup();

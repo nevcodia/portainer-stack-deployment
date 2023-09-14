@@ -31,7 +31,7 @@ inputs:
     description: Remove missing/obsolete services from stack on update.
     required: false
     default: "false"
-  pullImage:
+  pull_image:
     description: Remove existing image and pull again on update.
     required: false
     default: "false"

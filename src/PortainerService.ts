@@ -116,7 +116,7 @@ export class PortainerService {
             {
                 stackFileContent: payload.file,
                 prune: payload.prune,
-                pullImage: payload.pullImage
+                pullImage: payload.pull_image
             },
             {
                 params: {

@@ -41,4 +41,4 @@ The following inputs are available:
 | `mustache_variables` | String | No       | {}      | Variables to use when `file` is a `.mustache` template. Variables need to be written as JSON String. |
 | `delete`             | String | No       | false   | If set to `true` the stack will be deleted (based on the name).                                      |
 | `prune `             | String | No       | false   | If set to `true` missing/obsolete services will be removed from the exiting stack on update.         |
-| `pullImage `         | String | No       | false   | If set to `true` existing images will be removed and pull again on update.                           |
+| `pull_image `        | String | No       | false   | If set to `true` existing images will be removed and pull again on update.                           |

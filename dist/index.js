@@ -5809,7 +5809,7 @@ const getStackParams = () => {
         file,
         delete: core.getInput('delete', { required: false }) === "true",
         prune: core.getInput('prune', { required: false }) === "true",
-        pullImage: core.getInput('pullImage', { required: false }) === "true"
+        pull_image: core.getInput('pull_image', { required: false }) === "true"
     };
 };
 const get = () => {
@@ -10464,7 +10464,7 @@ class PortainerService {
         const { data } = await this.client.put(`/stacks/${payload.id}`, {
             stackFileContent: payload.file,
             prune: payload.prune,
-            pullImage: payload.pullImage
+            pullImage: payload.pull_image
         }, {
             params: {
                 endpointId: payload.environmentId
@@ -10524,13 +10524,13 @@ const deleteCurrentStack = async (portainer, cfg, stack) => {
 };
 const updateCurrentStack = async (portainer, cfg, stack) => {
     core.startGroup('Stack Update');
-    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}; pullImage: ${cfg.stack.pullImage};)...`);
+    core.info(`Updating existing stack (ID: ${stack.id}; prune: ${cfg.stack.prune}; pull_image: ${cfg.stack.pull_image};)...`);
     await portainer.updateStack({
         id: stack.id,
         environmentId: cfg.portainer.environment_id,
         file: cfg.stack.file,
         prune: cfg.stack.prune,
-        pullImage: cfg.stack.pullImage
+        pull_image: cfg.stack.pull_image
     });
     core.info(`Stack(${stack.id}) is updated.`);
     core.endGroup();
