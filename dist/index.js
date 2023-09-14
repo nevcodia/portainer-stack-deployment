@@ -10483,7 +10483,7 @@ class PortainerService {
     async deleteStack(payload) {
         await this.client.delete(`/stacks/${payload.id}`, {
             params: {
-                external: true,
+                external: false,
                 endpointId: payload.environmentId
             }
         });

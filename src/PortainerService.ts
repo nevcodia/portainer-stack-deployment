@@ -140,7 +140,7 @@ export class PortainerService {
             `/stacks/${payload.id}`,
             {
                 params: {
-                    external: true,
+                    external: false,
                     endpointId: payload.environmentId
                 }
             }
