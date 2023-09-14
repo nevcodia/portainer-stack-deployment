@@ -17,7 +17,7 @@ jobs:
           environment_id: 6
           stack_name: portainer-stack-deployment-test
           stack_file_path: teststack.yml.mustache
-          mustache_variables: '{"image":"hello-world@linux"}'
+          mustache_variables: '{"image":"hello-world:linux"}'
           pull_image: true
           prune: true
       - name: Test Stack Deletion
