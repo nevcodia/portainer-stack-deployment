@@ -29,3 +29,4 @@ jobs:
           stack_file_path: teststack.yml.mustache
           mustache_variables: '{"image":"hello-world"}'
           delete: true
+          pullImage: true
