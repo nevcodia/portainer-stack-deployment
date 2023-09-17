@@ -15,7 +15,7 @@ jobs:
     - name: Clone Repository
     - uses: actions/checkout@v2
     - name: Deploy Stack to Portainer
-      uses: nevcodia/portainer-stack-deployment@v2.19.4
+      uses: nevcodia/portainer-stack-deployment@v2.19.3
       with:
         url: ${{ secrets.PORTAINER_URL }} # https://portainer.example.co
         username: ${{ secrets.PORTAINER_USERNAME }} # "admin"
