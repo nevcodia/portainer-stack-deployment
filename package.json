@@ -1,6 +1,6 @@
 {
   "name": "portainer-stack-deployment",
-  "version": "2.19.0",
+  "version": "2.19.4",
   "description": "Portainer Stack Deployment Github Action, which deploys stacks by using Portainer API",
   "main": "dist/index.js",
   "scripts": {
